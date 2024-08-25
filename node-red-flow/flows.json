@@ -1,0 +1,27 @@
+[
+    {
+        "id": "0f12c543542bd534",
+        "type": "inject",
+        "z": "9e95cbd1556ad804",
+        "name": "Captura de Frame [ESP32]",
+        "props": [
+            {
+                "p": "sendimage",
+                "v": "true",
+                "vt": "bool"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "0.5",
+        "topic": "",
+        "x": 460,
+        "y": 420,
+        "wires": [
+            [
+                "bf55eef148e4ec9b"
+            ]
+        ]
+    }
+]

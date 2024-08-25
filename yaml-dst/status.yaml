@@ -1,0 +1,2 @@
+# Informa se a aquisição de imagens está completa para realizar inferências
+inference: True

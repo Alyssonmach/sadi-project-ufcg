@@ -1,0 +1,4 @@
+# Ignora imagens de destino
+images-dst/*
+# Ignora o cache do Python
+__pycache__/
