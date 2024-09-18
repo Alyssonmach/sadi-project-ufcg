@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import streamlit as st 
+import pandas as pd
+import database
 import yaml
 import os
 
@@ -74,7 +76,6 @@ with col3:
 st.divider()
 
 # Personalizando a segunda parte do corpo da página (Atualização na base de dados)
-
 if 'tried_login' not in st.session_state: st.session_state.tried_login = False
 if 'sucessfully_login' not in st.session_state: st.session_state.sucessfully_login = False
 
@@ -99,3 +100,31 @@ with st.expander('Acesso do Administrador'):
         if logoff:
             st.session_state.tried_login = False
             st.session_state.sucessfully_login = False
+        
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.text('Cadastrar Nova Placa:')
+            name = st.text_input('Nome do Titular: ')
+            plate = st.text_input('Placa do Carro: ')
+            cpf = st.text_input('CPF do Titular: ')
+            add_line = st.button('Cadastrar Usuário')
+
+            if add_line: database.add_car(plate, name, cpf)
+        
+        with col2:
+            st.text('Remover Placa:')
+            plate_remove1 = st.text_input('Informe a Placa: ')
+            plate_remove2 = st.text_input('Confirmar Placa: ')
+            st.warning('Atenção, essa ação não pode ser mais desfeita.')
+            remove_line = st.button('Remover Usuário')
+
+            if plate_remove1 != plate_remove2:
+                st.error('Os nomes das placas estão errados!')
+
+            if remove_line and plate_remove1 == plate_remove2: database.remove_car(plate_remove1)
+        
+if st.session_state.sucessfully_login == True:
+    st.text('Visualizar Tabela de Usuários:')
+    df = database.load_data_csv()
+    st.dataframe(df)
