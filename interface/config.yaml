@@ -1,0 +1,7 @@
+# Seleciona o tipo de análise que a interface deve mostrar
+# Opções possíveis: ['Em Espera', 'Aprovado', 'Reprovado']
+status_analysis: 'Em Espera'
+
+# Seleciona o status atual do motor
+# Opções possíveis: ['Fechado', 'Abrindo', 'Aberto', 'Fechando']
+status_motor: 'Fechado'
