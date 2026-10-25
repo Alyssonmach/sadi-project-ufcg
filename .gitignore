@@ -1,4 +1,16 @@
-# Ignora imagens de destino
+# Imagens recebidas em tempo de execução; manter apenas o marcador da pasta
 images-dst/*
-# Ignora o cache do Python
+!images-dst/.gitkeep
+
+# Python
 __pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Arquivos locais do sistema operacional
+.DS_Store
+Thumbs.db
