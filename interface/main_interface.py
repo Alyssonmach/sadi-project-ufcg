@@ -7,8 +7,9 @@ import os
 
 # Configurando alguns parâmetros da página no navegador
 st.set_page_config(page_title = 'SADI', layout = "wide")
+INTERFACE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-def load_yaml(archive = 'config.yaml'):
+def load_yaml(archive = os.path.join(INTERFACE_DIR, 'config.yaml')):
     '''
     Função que carrega os dados em um dicionário a partir de um arquivo YAML.
 
@@ -39,7 +40,7 @@ status_motor = data['status_motor']
 if status_anaysis == STATUS_ANALYSIS[0]: plate_number, images = PLATE_NUMBER[2], IMAGES[2]
 elif status_anaysis == STATUS_ANALYSIS[1]: plate_number, images = PLATE_NUMBER[0], IMAGES[0]
 elif status_anaysis == STATUS_ANALYSIS[2]: plate_number, images = PLATE_NUMBER[1], IMAGES[1]
-image = plt.imread(f'assets/{images}')
+image = plt.imread(os.path.join(INTERFACE_DIR, 'assets', images))
 
 # Cabeçalho da Página
 st.markdown('# Sistema de Estacionamento Inteligente')

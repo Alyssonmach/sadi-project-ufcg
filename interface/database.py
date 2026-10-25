@@ -1,6 +1,8 @@
 import pandas as pd
 import os
 
+INTERFACE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 def load_data_csv(csv_file = 'carros_cadastro.csv'):
     '''
     Função para carregar os dados do CSV.
@@ -12,7 +14,8 @@ def load_data_csv(csv_file = 'carros_cadastro.csv'):
         dataframe (pd) -> base de dados carregada a partir de um CSV.
     '''
 
-    if os.path.exists(csv_file): dataframe =  pd.read_csv(csv_file)
+    csv_path = csv_file if os.path.isabs(csv_file) else os.path.join(INTERFACE_DIR, csv_file)
+    if os.path.exists(csv_path): dataframe =  pd.read_csv(csv_path)
     else: dataframe = pd.DataFrame(columns=['Placa', 'Nome', 'CPF'])
 
     return dataframe
@@ -26,7 +29,8 @@ def save_data_csv(df, csv_file = 'carros_cadastro.csv'):
         csv_file (str) -> caminho relativo do arquivo CSV a ser salvo.
     '''
 
-    df.to_csv(csv_file, index=False)
+    csv_path = csv_file if os.path.isabs(csv_file) else os.path.join(INTERFACE_DIR, csv_file)
+    df.to_csv(csv_path, index=False)
 
 def add_car(placa, nome, cpf):
     '''
